@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Elonera School System</title>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+  
+</head>
+<body>
+    <!-- Contact Bar -->
+    <div class="contact-bar">
+        <div class="container contact-container">
+            <div class="contact-item">
+                <i>📞</i>
+                <span>(+92)334-3777-385</span>
+            </div>
+            <div class="contact-item">
+                <i>📞</i>
+                <span>(+92)312-254-8887</span>
+            </div>
+            <div class="contact-item">
+                <i>✉️</i>
+                <span>tescsmanagement@gmail.com</span>
+            </div>
+        </div>
+    </div>
+    
+    
+    <!-- Main Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo-container">
+                <!-- Replace with your actual logo -->
+                <img src="images/logo.png" alt="Royal Academy Logo" class="logo-img" height="px">
+                <div class="logo-text">The Elonera School System </div>
+            </div>
+            <div class="menu-toggle">☰</div>
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="events.html">Events and News</a></li>
+                    <li><a href="virtual.html">Virtual Tour</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- <section class="hero">
+        <video loop class="hero-video">
+            <source src="images/herovid1.mp4" type="video/mp4">
+        </video>
+    </section>
+     -->
+
+     <!-- Hero Section with Video Background -->
+<section class="hero">
+  <!-- Background Video -->
+  <video id="heroVideo" autoplay muted loop playsinline class="hero-video">
+    <source src="images/herovid1.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <!-- Audio Toggle Button -->
+  <button id="audioToggle" class="audio-btn muted">🔇</button>
+</section>
+
+<script>
+  const video = document.getElementById("heroVideo");
+  const btn = document.getElementById("audioToggle");
+
+  btn.addEventListener("click", () => {
+    if (video.muted) {
+      video.muted = false;
+      btn.textContent = "🔊"; // change to speaker icon
+      btn.classList.remove("muted");
+    } else {
+      video.muted = true;
+      btn.textContent = "🔇"; // change back to muted icon
+      btn.classList.add("muted");
+    }
+  });
+</script>
+
+<style>
+
+/* YouTube-style audio toggle button */
+.audio-btn {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(0, 0, 0, 0.6);
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s, transform 0.2s;
+  z-index: 2; /* makes sure it’s above the video */
+}
+
+.audio-btn:hover {
+  background: rgba(0, 0, 0, 0.8);
+  transform: scale(1.1);
+}
+
+.audio-btn.muted {
+  color: #ccc; /* lighter color when muted */
+}
+
+
+</style>
+
+
+    <!-- Principal's Testimonial Section -->
+    <section class="principal">
+        <div class="container principal-container">
+            <div class="principal-testimonial" data-aos="slide-right" data-aos-duration="800">
+                <h2>A Message From Our Principal</h2>
+                <div class="testimonial-text">
+                    As Principal of Elonera School, I am honored to lead a community where learning goes beyond textbooks. Our dedicated teachers work tirelessly to inspire curiosity, creativity, and confidence in every student. We believe in recognizing each child's unique talents and guiding them to achieve their full potential. At Elonera, academic excellence is paired with strong values, preparing students for both personal and professional success. Every achievement of our learners reflects the teamwork and passion of our staff and families. Together, we make Elonera a place where dreams are nurtured and futures are built.
+                </div>
+                <div class="principal-info">
+                    <div class="principal-name">Basir Ali Khan</div>
+                    <div class="principal-title">Principal, The Elonera School System</div>
+                </div>
+            </div>
+            <div class="principal-image" data-aos="slide-right" data-aos-duration="800" data-aos-delay="200">
+                <!-- Replace with your actual image path -->
+                <img src="images/principal.jpg" alt="Principal Dr. Jonathan Whitmore">
+            </div>
+        </div>
+    </section>
+    
+    <!-- Why Choose Us Section - Updated -->
+    <section class="why-choose-us">
+        <div class="container">
+            <div class="why-choose-card">
+                <div class="why-choose-container">
+                    <div class="why-choose-content" data-aos="slide-right" data-aos-duration="800">
+                        <h2>Why Choose Our School</h2>
+                        <p>Our school is the perfect choice because we provide students with everything they need to succeed. We have supportive teachers who are always ready to guide and encourage you, well-equipped computer and science labs that make learning hands-on and exciting, and a wide range of extracurricular activities that help students grow beyond the classroom. Whether it’s academics, creativity, or personal development, our school creates the right balance so every student can shine.</p>
+                    </div>
+                    <div class="why-choose-image" data-aos="slide-right" data-aos-duration="800" data-aos-delay="200">
+                        <!-- Replace with your actual image -->
+                        <img src="images/why1.jpg" alt="Advanced Computer Lab">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- YouTube Videos Section -->
+    <section class="youtube-section">
+        <div class="container">
+            <div class="youtube-header">
+                <h2 data-aos="slide-right" data-aos-duration="800">Our YouTube Channel</h2>
+                <div class="youtube-btn-container" data-aos="slide-right" data-aos-duration="800" data-aos-delay="200">
+                    <a href="https://www.youtube.com/@theEloneraschool" class="btn btn-outline" target="_blank">Visit Channel</a>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+    
+    <!-- Reviews Section -->
+    <section class="reviews">
+        <div class="container">
+            <h2 data-aos="slide-right" data-aos-duration="800">What Parents Say</h2>
+            <div class="reviews-slider" data-aos="slide-right" data-aos-duration="800" data-aos-delay="200">
+                <div class="reviews-track" id="reviewsTrack">
+                    <div class="review-card">
+                        <div class="review-text">
+                            "The Elonera School has provided my child with an exceptional education. The teachers are dedicated and the facilities are outstanding. I've seen tremendous growth in both academic skills and personal development."
+                        </div>
+                        <div class="review-author">Syed Fatima</div>
+                        <div class="review-relation">Parent of Grade 10 student</div>
+                    </div>
+                    <div class="review-card">
+                        <div class="review-text">
+                            "The supportive environment at The Elonera School has helped my son thrive. The communication from teachers is excellent, and the extracurricular programs are diverse and engaging."
+                        </div>
+                        <div class="review-author">Ali Mansoor</div>
+                        <div class="review-relation">Parent of Grade 8 student</div>
+                    </div>
+                    <div class="review-card">
+                        <div class="review-text">
+                            "As an educator myself, I'm impressed with the curriculum and teaching methods at The Elonera School. My daughter looks forward to school every day and is constantly challenged in positive ways."
+                        </div>
+                        <div class="review-author">Arif Khan</div>
+                        <div class="review-relation">Parent of Grade 10 student</div>
+                    </div>
+                </div>
+                <div class="slider-nav" id="sliderNav">
+                    <div class="slider-dot active"></div>
+                    <div class="slider-dot"></div>
+                    <div class="slider-dot"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container" data-aos="slide-right" data-aos-duration="800">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>The Elonera School System</h3>
+                    <p>Providing quality education since 2011. Our mission is to nurture curious minds and develop future leaders.</p>
+                </div>
+                <div class="footer-col" >
+                    <h3>Quick Links</h3>
+                    <ul>
+                         <li><a href="index.html">Home</a></li>
+                        <li><a href="events.html">Events and News</a></li>
+                        <li><a href="virtual.html">Virtual Tour</a></li>
+                        <li><a href="aboutus.html">About Us</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+    <h3>Follow Us</h3>
+    <div class="social-links">
+        <a href="https://www.facebook.com/TheElonera/" target="_blank" aria-label="Facebook">
+            <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="https://www.youtube.com/@theEloneraschool" target="_blank" aria-label="YouTube">
+            <i class="fab fa-youtube"></i>
+        </a>
+    </div>
+</div>
+
+                <div class="footer-col">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li>C-269 Gulshan e Hadeed, Phase 1 Extension, Bin Qasim Town, Karachi, Pakistan</li>
+                        <li>Phone: (+92)312-254-8887, (+92)334-3777-385</li>
+                        <li>E-mail: tescsmanagement@gmail.com</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS animation library
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true,
+            offset: 120,
+            delay: 0
+        });
+        
+        // Mobile menu toggle functionality
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.getElementById('main-nav').classList.toggle('active');
+        });
+        
+        // Close menu when clicking on a link (for single page navigation)
+        document.querySelectorAll('#main-nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('main-nav').classList.remove('active');
+            });
+        });
+        
+        // Reviews slider functionality
+        const track = document.getElementById('reviewsTrack');
+        const dots = document.querySelectorAll('.slider-dot');
+        let currentSlide = 0;
+        
+        function goToSlide(index) {
+            track.style.transform = `translateX(-${index * 100}%)`;
+            dots.forEach(dot => dot.classList.remove('active'));
+            dots[index].classList.add('active');
+            currentSlide = index;
+        }
+        
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => goToSlide(index));
+        });
+        
+        // Auto slide every 5 seconds
+        setInterval(() => {
+            currentSlide = (currentSlide + 1) % dots.length;
+            goToSlide(currentSlide);
+        }, 5000);
+    </script>
+</body>
+</html>

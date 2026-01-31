@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events and News - The Elonera School System</title>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --royal-blue: #0a2463;
+            --light-blue: #3e78b2;
+            --neon-purple: #b026ff;
+            --hover-purple: #d46ffc;
+            --white: #ffffff;
+            --light-gray: #f5f5f5;
+            --dark-blue: #091c3a;
+            --card-gray: #f8f8f8;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        
+        body {
+            background-color: var(--light-gray);
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Top Contact Bar */
+        .contact-bar {
+            background-color:  #1d2966;;
+            color: var(--white);
+            padding: 0.5rem 0;
+            font-size: 0.9rem;
+        }
+        
+        .contact-container {
+            display: flex;
+            justify-content: flex-end;
+            gap: 2rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .contact-item i {
+            color: var(--neon-purple);
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--royal-blue);
+            color: var(--white);
+            padding: 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 10px;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .logo-img {
+            height: 100px;
+            width: auto;
+        }
+        
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        
+        .logo-text span {
+            color: var(--neon-purple);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 2rem;
+        }
+        
+        nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            padding: 0.5rem 0;
+            position: relative;
+        }
+        
+        nav ul li a:hover {
+            color: var(--hover-purple);
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--neon-purple);
+            bottom: 0;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        /* Mobile Menu */
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+        
+        /* Events Page Styles */
+        .events-hero {
+            background: url('images/picnic9.jpg') center/cover no-repeat;
+            color: var(--white);
+            text-align: center;
+            padding: 15rem 3rem;
+            margin-bottom: 3rem;
+        }
+        
+         .events-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+      
+        
+        /* Section Headings */
+        .section-heading {
+            text-align: center;
+            color: var(--royal-blue);
+            margin: 3rem 0 2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--neon-purple);
+            position: relative;
+        }
+        
+        .section-heading:after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 3px;
+            background: var(--royal-blue);
+            bottom: -3px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        /* Photo Gallery Layout */
+        .events-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+        
+        .gallery-item {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            height: 280px;
+            cursor: pointer;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        /* Removed the gallery overlay styles to eliminate blue hover effect */
+        
+        .event-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Upcoming Events */
+        .upcoming-events {
+            margin: 4rem 0;
+        }
+        
+        .events-list {
+            display: grid;
+            gap: 1.5rem;
+        }
+        
+        .event-list-item {
+            display: grid;
+            grid-template-columns: 100px 1fr;
+            background: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .event-date-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: var(--royal-blue);
+            color: var(--white);
+            padding: 1rem;
+        }
+        
+        .event-day {
+            font-size: 1.8rem;
+            font-weight: bold;
+            line-height: 1;
+        }
+        
+        .event-month {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+        
+        .event-details {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .event-list-title {
+            font-size: 1.3rem;
+            color: var(--royal-blue);
+            margin-bottom: 0.5rem;
+        }
+        
+        .event-time-location {
+            display: flex;
+            gap: 1.5rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-blue);
+            color: var(--white);
+            padding: 3rem 0 1rem;
+            margin-top: 4rem;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-col h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 2px;
+            background: var(--neon-purple);
+            bottom: -8px;
+            left: 0;
+        }
+        
+        .footer-col ul {
+            list-style: none;
+        }
+        
+        .footer-col ul li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-col ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-col ul li a:hover {
+            color: var(--hover-purple);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-links a {
+            color: var(--white);
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: var(--neon-purple);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .events-hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .contact-container {
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+            
+            .header-container {
+                flex-direction: row;
+                align-items: center;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            nav {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--royal-blue);
+                padding: 1rem 0;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                transform: scaleY(0);
+                transform-origin: top;
+                transition: transform 0.3s ease;
+            }
+            
+            nav.active {
+                transform: scaleY(1);
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav ul li {
+                margin: 0.5rem 0;
+            }
+            
+            .events-hero {
+                padding: 3rem 1rem;
+            }
+            
+            .events-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .events-hero p {
+                font-size: 1rem;
+            }
+            
+            .event-list-item {
+                grid-template-columns: 1fr;
+            }
+            
+            .event-date-box {
+                flex-direction: row;
+                justify-content: flex-start;
+                gap: 1rem;
+                padding: 1rem 1.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+
+            .events-hero {
+                padding: 8rem 1rem;
+                min-height: 40vh;
+            }
+            
+            .events-hero h1 {
+                font-size: 1.8rem;
+            }
+            .logo-text {
+                font-size: 1.5rem;
+            }
+            
+            .logo-img {
+                height: 70px;
+            }
+            
+            .events-gallery {
+                grid-template-columns: 1fr;
+            }
+            
+            .event-time-location {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+     <div class="contact-bar">
+        <div class="container contact-container">
+            <div class="contact-item">
+                <i>📞</i>
+                <span>(+92)334-3777-385</span>
+            </div>
+            <div class="contact-item">
+                <i>📞</i>
+                <span>(+92)312-254-8887</span>
+            </div>
+            <div class="contact-item">
+                <i>✉️</i>
+                <span>tescsmanagement@gmail.com</span>
+            </div>
+        </div>
+    </div>
+   <header>
+        <div class="container header-container">
+            <div class="logo-container">
+                <!-- Replace with your actual logo -->
+                <img src="images/logo.png" alt="Royal Academy Logo" class="logo-img" height="px">
+                <div class="logo-text">The Elonera School System </div>
+            </div>
+            <div class="menu-toggle">☰</div>
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="events.html">Events and News</a></li>
+                    <li><a href="virtual.html">Virtual Tour</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Events Hero Section -->
+    <section class="events-hero">
+        <div class="container">
+            <h1>School Events & News</h1>
+        </div>
+    </section>
+
+     <div class="container">
+        <h2 class="section-heading">Annual Excursion</h2>
+        
+        
+        <div class="events-gallery">
+            <div class="gallery-item" data-aos="fade-up">
+                <img src="images/picnic2.jpg" alt="Boys Adventure Trip">
+            </div>
+            
+            <div class="gallery-item" data-aos="fade-up" data-aos-delay="100">
+                <img src="images/picnic4.jpg" alt="Boys Historical Tour">
+            </div>
+
+            <div class="gallery-item" data-aos="fade-up" data-aos-delay="100">
+                <img src="images/picnic7.jpg" alt="Boys Historical Tour">
+            </div>
+
+        </div>
+        
+    </div>
+
+
+    <!-- Annual Excursion Section -->
+    <div class="container">
+        <h2 class="section-heading">Student Day</h2>
+        
+        
+        <div class="events-gallery">
+            <div class="gallery-item" data-aos="fade-up">
+                <img src="images/sd1.jpg" alt="Boys Adventure Trip">
+            </div>
+            
+            <div class="gallery-item" data-aos="fade-up" data-aos-delay="100">
+                <img src="images/ab.jpg" alt="Boys Historical Tour">
+            </div>
+
+            <div class="gallery-item" data-aos="fade-up" data-aos-delay="100">
+                <img src="images/sd3.jpg" alt="Boys Historical Tour">
+            </div>
+
+        </div>
+
+        
+        
+    </div>
+
+    <!-- Annual Sports Day Section -->
+    <div class="container">
+        <h2 class="section-heading">Annual Sports Day</h2>
+
+         <h3 class="section-subheading">Girls Section</h3>
+        <div class="events-gallery">
+            <div class="gallery-item" data-aos="fade-up">
+                <img src="images/ex1.jpg" alt="Track Events">
+            </div>
+
+            <div class="gallery-item" data-aos="fade-up" data-aos-delay="100">
+                <img src="images/ex2.jpg" alt="Team Sports">
+            </div>
+
+            <div class="gallery-item" data-aos="fade-up" data-aos-delay="200">
+                <img src="images/extra1g.jpg" alt="Prize Distribution">
+            </div>
+        </div>
+
+        <h3 class="section-subheading">Boys Section</h3>
+        <div class="events-gallery">
+            <div class="gallery-item" data-aos="fade-up">
+                <img src="images/extra3b.jpg" alt="Track Events">
+            </div>
+
+            <div class="gallery-item" data-aos="fade-up" data-aos-delay="100">
+                <img src="images/exca1.jpg" alt="Team Sports">
+            </div>
+
+            <div class="gallery-item" data-aos="fade-up" data-aos-delay="200">
+                <img src="images/extra4b.jpg">
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Islamic Events Section -->
+    <div class="container">
+        <h2 class="section-heading">Islamic Events</h2>
+         <h3 class="section-subheading">Seminar on Finality of Prophethood</h3>
+        <div class="events-gallery">
+            <div class="gallery-item" data-aos="fade-up">
+                <img src="images/ie1.jpg" alt="Quran Competition">
+            </div>
+
+            <div class="gallery-item" data-aos="fade-up" data-aos-delay="100">
+                <img src="images/ie3.jpg" alt="Eid Milan">
+            </div>
+
+            <div class="gallery-item" data-aos="fade-up" data-aos-delay="200">
+                <img src="images/ie2.jpg" alt="Milad-un-Nabi">
+            </div>
+        </div>
+    </div>
+
+    <!-- Indoor Games Section -->
+    <div class="container">
+        <h2 class="section-heading">Independence Day Celebration</h2>
+        <div class="events-gallery">
+            <div class="gallery-item" data-aos="fade-up">
+                <img src="images/14-1.jpg" alt="Chess Tournament">
+            </div>
+
+            <div class="gallery-item" data-aos="fade-up" data-aos-delay="100">
+                <img src="images/14-2.jpg" alt="Table Tennis">
+            </div>
+
+            <div class="gallery-item" data-aos="fade-up" data-aos-delay="200">
+                <img src="images/abc123.jpg" alt="Debate Competition">
+            </div>
+        </div>
+    </div>
+
+    <!-- Montessori Section -->
+    <div class="container">
+        <h2 class="section-heading">Montessori Section</h2>
+        
+        <h3 class="section-subheading">Color Days</h3>
+        <div class="events-gallery">
+            <div class="gallery-item" data-aos="fade-up">
+                <img src="images/yd2.jpg" alt="Red Day">
+            </div>
+            
+            <div class="gallery-item" data-aos="fade-up" data-aos-delay="100">
+                <img src="images/yd.jpg" alt="Blue Day">
+            </div>
+            
+            <div class="gallery-item" data-aos="fade-up" data-aos-delay="200">
+                <img src="images/yd1.jpg" alt="Green Day">
+            </div>
+        </div>
+        
+        <h3 class="section-subheading">Activities</h3>
+        <div class="events-gallery">
+            <div class="gallery-item" data-aos="fade-up">
+                <img src="images/mont6.jpg" alt="Art and Craft">
+            </div>
+            
+            <div class="gallery-item" data-aos="fade-up" data-aos-delay="100">
+                <img src="images/ac1.jpg" alt="Story Telling">
+            </div>
+            
+            <div class="gallery-item" data-aos="fade-up" data-aos-delay="200">
+                <img src="images/ac2.jpg" alt="Plantation">
+            </div>
+        </div>
+    </div>
+
+   
+    <footer>
+        <div class="container" data-aos="slide-right" data-aos-duration="800">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>The Elonera School System</h3>
+                    <p>Providing quality education since 2011. Our mission is to nurture curious minds and develop future leaders.</p>
+                </div>
+                <div class="footer-col" >
+                    <h3>Quick Links</h3>
+                    <ul>
+                         <li><a href="index.html">Home</a></li>
+                        <li><a href="events.html">Events and News</a></li>
+                        <li><a href="virtual.html">Virtual Tour</a></li>
+                        <li><a href="aboutus.html">About Us</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+    <h3>Follow Us</h3>
+    <div class="social-links">
+        <a href="https://www.facebook.com/TheElonera/" target="_blank" aria-label="Facebook">
+            <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="https://www.youtube.com/@theEloneraschool" target="_blank" aria-label="YouTube">
+            <i class="fab fa-youtube"></i>
+        </a>
+    </div>
+</div>
+
+                <div class="footer-col">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li>C-269 Gulshan e Hadeed, Phase 1 Extension, Bin Qasim Town, Karachi, Pakistan</li>
+                        <li>Phone: (+92)312-254-8887, (+92)334-3777-385</li>
+                        <li>E-mail: tescsmanagement@gmail.com</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+ <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS animation library
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true,
+            offset: 120,
+            delay: 0
+        });
+        
+        // Mobile menu toggle functionality
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.getElementById('main-nav').classList.toggle('active');
+        });
+        
+        // Close menu when clicking on a link (for single page navigation)
+        document.querySelectorAll('#main-nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('main-nav').classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>

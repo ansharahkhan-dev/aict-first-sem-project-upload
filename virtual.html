@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual Tour - The Elonera School System</title>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --royal-blue: #0a2463;
+            --light-blue: #3e78b2;
+            --neon-purple: #b026ff;
+            --hover-purple: #d46ffc;
+            --white: #ffffff;
+            --light-gray: #f5f5f5;
+            --dark-blue: #091c3a;
+            --card-gray: #f8f8f8;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        
+        body {
+            background-color: var(--light-gray);
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Top Contact Bar */
+        .contact-bar {
+            background-color:  #1d2966;;
+            color: var(--white);
+            padding: 0.5rem 0;
+            font-size: 0.9rem;
+        }
+        
+        .contact-container {
+            display: flex;
+            justify-content: flex-end;
+            gap: 2rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .contact-item i {
+            color: var(--neon-purple);
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--royal-blue);
+            color: var(--white);
+            padding: 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 10px;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .logo-img {
+            height: 100px;
+            width: auto;
+        }
+        
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        
+        .logo-text span {
+            color: var(--neon-purple);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 2rem;
+        }
+        
+        nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            padding: 0.5rem 0;
+            position: relative;
+        }
+        
+        nav ul li a:hover {
+            color: var(--hover-purple);
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--neon-purple);
+            bottom: 0;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        /* Mobile Menu */
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+        
+        /* Virtual Tour Hero Section */
+        .virtual-hero {
+            background: url('images/12.jpg');
+            background-size: cover;
+            background-position: center;
+            color: rgb(255, 255, 255);
+            text-align: center;
+            padding: 15rem 1rem;
+            /* margin-bottom: 0px; */
+        }
+        
+        .virtual-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        
+        /* Section styles */
+        .tour-section {
+            padding: 80px 0;
+            border-bottom: 1px solid #eaeaea;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--royal-blue);
+            /* margin-bottom: 20px; */
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background-color: var(--neon-purple);
+        }
+        
+        .section-header p {
+            font-size: 1.3rem;
+            color: var(--royal-blue);
+            max-width: 800px;
+            margin: 30px auto 0;
+        }
+        
+        /* Gallery styles */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        
+        .gallery-item {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            transition: transform 0.3s;
+            height: 280px;
+            background: var(--royal-blue);
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.2);
+        }
+        
+        .gallery-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .gallery-item:hover .gallery-img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 36, 99, 0.85);
+            color: white;
+            padding: 20px;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+        
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
+        }
+        
+        .gallery-caption h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: var(--hover-purple);
+        }
+        
+        .gallery-caption p {
+            font-size: 1rem;
+        }
+        
+        /* Info section styles */
+        .info-section {
+            background-color: var(--card-gray);
+            border-radius: 12px;
+            padding: 40px;
+            margin: 50px 0;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            border-left: 5px solid var(--neon-purple);
+        }
+        
+        .info-section h3 {
+            color: var(--royal-blue);
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .info-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--neon-purple);
+        }
+        
+        .info-section p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            color: #444;
+        }
+        
+        .info-points {
+            list-style-type: none;
+            margin: 30px 0;
+        }
+        
+        .info-points li {
+            padding: 15px 0;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            align-items: center;
+            font-size: 1.1rem;
+        }
+        
+        .info-points li:before {
+            content: "✓";
+            color: var(--neon-purple);
+            margin-right: 15px;
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-blue);
+            color: var(--white);
+            padding: 3rem 0 1rem;
+            margin-top: 60px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-col h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 2px;
+            background: var(--neon-purple);
+            bottom: -8px;
+            left: 0;
+        }
+        
+        .footer-col ul {
+            list-style: none;
+        }
+        
+        .footer-col ul li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-col ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-col ul li a:hover {
+            color: var(--hover-purple);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-links a {
+            color: var(--white);
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: var(--neon-purple);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        
+        /* AOS Animations */
+        [data-aos="slide-right"] {
+            transform: translateX(-50px);
+            opacity: 0;
+            transition-property: transform, opacity;
+        }
+        
+        [data-aos="slide-right"].aos-animate {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        
+      
+    </style>
+</head>
+<body>
+    <div class="contact-bar">
+        <div class="container contact-container">
+            <div class="contact-item">
+                <i>📞</i>
+                <span>(+92)334-3777-385</span>
+            </div>
+            <div class="contact-item">
+                <i>📞</i>
+                <span>(+92)312-254-8887</span>
+            </div>
+            <div class="contact-item">
+                <i>✉️</i>
+                <span>tescsmanagement@gmail.com</span>
+            </div>
+        </div>
+    </div>
+    
+    <header>
+        <div class="container header-container">
+            <div class="logo-container">
+                <img src="images/logo.png" alt="Royal Academy Logo" class="logo-img">
+                <div class="logo-text">The Elonera School System</div>
+            </div>
+            <div class="menu-toggle">☰</div>
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="events.html">Events and News</a></li>
+                    <li><a href="virtual.html">Virtual Tour</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <div class="virtual-hero">
+        <div class="container">
+            <h1 data-aos="fade-down">Virtual Campus Tour</h1>
+        </div>
+    </div>
+    
+    <div class="container">
+        <!-- Montessori Section -->
+        <section class="tour-section" id="montessori">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Montessori</h2>
+                <p>Our Montessori program fosters independence, creativity, and a love for learning in a carefully prepared environment.</p>
+            </div>
+            
+            <div class="gallery">
+                <div class="gallery-item" data-aos="fade-right" data-aos-delay="200">
+                    <img src="images/mont1.jpg" alt="Montessori Classroom" class="gallery-img">
+                    <div class="gallery-caption">
+                        <h3>Montessori Dynamics</h3>
+                        <p>Encouraging children to learn through hands-on exploration</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-aos="fade-right" data-aos-delay="300">
+                    <img src="images/mont5.jpg" alt="Learning Materials" class="gallery-img">
+                    <div class="gallery-caption">
+                        <h3>Immersive Learning</h3>
+                        <p>Specially designed Montessori materials</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-aos="fade-right" data-aos-delay="400">
+                    <img src="images/mont6.jpg" alt="Play Area" class="gallery-img">
+                    <div class="gallery-caption">
+                        <h3>Play Area</h3>
+                        <p>Safe and stimulating environment</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="info-section" data-aos="fade-up" data-aos-delay="500">
+                <h3>About Our Montessori Program</h3>
+                <p>Our Montessori program is designed to nurture the whole child - intellectually, socially, emotionally, and physically. We follow the Montessori philosophy of education, which emphasizes hands-on, self-directed learning in a prepared environment.</p>
+                
+                <ul class="info-points">
+                    <li>Child-centered learning environment</li>
+                    <li>Specially trained Montessori teachers</li>
+                    <li>Development of independence and confidence</li>
+                    <li>Focus on practical life skills</li>
+                    <li>Individualized learning plans</li>
+                    <li>Mixed-age classrooms promoting peer learning</li>
+                </ul>
+            </div>
+        </section>
+        
+        <!-- 1-8 Standard Section -->
+        <section class="tour-section" id="standard">
+            <div class="section-header" data-aos="fade-up">
+                <h2>1-8 Standard <br>(Seperate Sections for Boys and Girls)</h2>
+                <p>Our elementary and middle school program builds a strong academic foundation while encouraging curiosity and critical thinking.</p>
+            </div>
+            
+            <div class="gallery">
+                <div class="gallery-item" data-aos="fade-right" data-aos-delay="200">
+                    <img src="images/aq.jpeg" alt="Science Lab" class="gallery-img">
+                    <div class="gallery-caption">
+                        <h3>Science Laboratory</h3>
+                        <p>Hands-on experiments and discovery</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-aos="fade-right" data-aos-delay="300">
+                    <img src="images/1-8-1.jpg" alt="Classroom" class="gallery-img">
+                    <div class="gallery-caption">
+                        <h3>Exam Conduction</h3>
+                        <p>Interactive learning environment</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-aos="fade-right" data-aos-delay="400">
+                    <img src="images/gs.jpg" alt="Library" class="gallery-img">
+                    <div class="gallery-caption">
+                        <h3>Spacious Classrooms</h3>
+                        <p>Extensive collection of books and resources</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="info-section" data-aos="fade-up" data-aos-delay="500">
+                <h3>About Our 1-8 Standard Program</h3>
+                <p>Our elementary and middle school curriculum is designed to provide a balanced education that develops the intellectual, social, and emotional skills necessary for success in high school and beyond.</p>
+                
+                <ul class="info-points">
+                    <li>Comprehensive curriculum aligned with national standards</li>
+                    <li>Experienced and dedicated teaching faculty</li>
+                    <li>Technology integration in learning</li>
+                    <li>Regular assessments and progress tracking</li>
+                    <li>Focus on critical thinking and problem-solving</li>
+                    <li>Extracurricular activities</li>
+                </ul>
+            </div>
+        </section>
+        
+        <!-- 9th and 10th Grade Section -->
+        <section class="tour-section" id="senior">
+            <div class="section-header" data-aos="fade-up">
+                <h2>9th and 10th Grade</h2>
+                <p>Our senior program prepares students for board examinations and future academic challenges with rigorous coursework and comprehensive support.</p>
+            </div>
+            
+            <div class="gallery">
+                <div class="gallery-item" data-aos="fade-right" data-aos-delay="200">
+                    <img src="images/cl.png" alt="Computer Lab" class="gallery-img">
+                    <div class="gallery-caption">
+                        <h3>Computer Laboratory</h3>
+                        <p>Complete understanding of technology concepts</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-aos="fade-right" data-aos-delay="300">
+                    <img src="images/card.png" alt="Study Area" class="gallery-img">
+                    <div class="gallery-caption">
+                        <h3>Excellent Mentorship</h3>
+                        <p>In detail understanding of concepts</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-aos="fade-right" data-aos-delay="400">
+                    <img src="images/ex2.jpg" alt="Discussion Room" class="gallery-img">
+                    <div class="gallery-caption">
+                        <h3>Extra-Curriculars</h3>
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="info-section" data-aos="fade-up" data-aos-delay="500">
+                <h3>About Our 9th and 10th Grade Program</h3>
+                <p>Our senior secondary program is designed to prepare students for board examinations and higher education through a rigorous academic curriculum, comprehensive support systems, and career guidance.</p>
+                
+                <ul class="info-points">
+                    <li>Board examination preparation</li>
+                    <li>Specialized subject teachers</li>
+                    <li>Regular mock tests and practice sessions</li>
+                    <li>Career counseling and guidance</li>
+                    <li>University preparation workshops</li>
+                    <li>Leadership development programs</li>
+                </ul>
+            </div>
+        </section>
+        
+        <!-- Additional Facilities Section -->
+        <section class="tour-section" id="facilities">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Additional Facilities</h2>
+
+                <p>Whatsapp groups of Every class for all updates, and alerts.</p>
+                
+                <p>Proper Parent-Teacher Meetings For Progress and feedback on Student's Progress</p>
+
+            </div>
+            
+        </section>
+    </div>
+    
+    <footer>
+        <div class="container" data-aos="slide-right" data-aos-duration="800">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>The Elonera School System</h3>
+                    <p>Providing quality education since 2011. Our mission is to nurture curious minds and develop future leaders.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="events.html">Events and News</a></li>
+                        <li><a href="virtual.html">Virtual Tour</a></li>
+                        <li><a href="aboutus.html">About Us</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h3>Follow Us</h3>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/TheElonera/" target="_blank" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://www.youtube.com/@theEloneraschool" target="_blank" aria-label="YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li>C-269 Gulshan e Hadeed, Phase 1 Extension, Bin Qasim Town, Karachi, Pakistan</li>
+                        <li>Phone: (+92)312-254-8887, (+92)334-3777-385</li>
+                        <li>E-mail: tescsmanagement@gmail.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2023 The Elonera School System. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS animation library
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true,
+            offset: 120,
+            delay: 0
+        });
+        
+        // Mobile menu toggle functionality
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.getElementById('main-nav').classList.toggle('active');
+        });
+        
+        // Close menu when clicking on a link (for single page navigation)
+        document.querySelectorAll('#main-nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('main-nav').classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>
